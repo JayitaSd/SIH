@@ -1,1 +1,48 @@
-<p>sign-up works!</p>
+
+<div class="container">
+  <form class="reg-form" [formGroup]="regFormGroup" (ngSubmit)="submitData()">
+    <h2 class=" text-center my-2">Register</h2>
+    
+    <!-- Email -->
+    <div class="label-input">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" required />
+    </div>
+    <p *ngIf="getFormControl('email')?.dirty && getFormControl('email')?.touched && getFormControl('email')?.errors?.['email']" class="errors">
+      Invalid email
+    </p>
+    <p *ngIf="isFormControlError('email')" class="errors">Email is required</p>
+
+    <!-- Phone -->
+    <div class="label-input">
+      <label for="phone">Phone No.</label>
+      <input id="phone" type="text" formControlName="phone" required />
+    </div>
+    <p *ngIf="isFormControlError('phone')" class="errors">Phone number is required</p>
+
+    <!-- Full Name -->
+    <div class="label-input">
+      <label for="fullName">Full Name</label>
+      <input id="fullName" type="text" formControlName="fullName" required />
+    </div>
+    <p *ngIf="isFormControlError('fullName')" class="errors">Full name is required</p>
+
+    <!-- Password -->
+    <div class="label-input">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" required />
+    </div>
+    <p *ngIf="isFormControlError('password')" class="errors">Password is required</p>
+
+    <!-- Confirm Password -->
+    <div class="label-input">
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" required />
+    </div>
+    <p *ngIf="isFormControlError('confirmPassword')" class="errors">Confirmation required</p>
+    <p *ngIf="checkPassword()" class="errors">Passwords don't match</p>
+
+    <!-- Submit Button -->
+    <button [disabled]="regFormGroup.invalid || usernameError" class="reg-btn">Register</button>
+  </form>
+</div>
