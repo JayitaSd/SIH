@@ -10,10 +10,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: '/ForgotPassword',
+    path: 'ForgotPassword',
     component: FPwdComponent
   },{
-    path: '/SignUp',
+    path: 'SignUp',
     component: SignUpComponent
   }, 
   
