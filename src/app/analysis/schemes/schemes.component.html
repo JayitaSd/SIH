@@ -1,1 +1,17 @@
-<p>schemes works!</p>
+<h1>Scehmes</h1>
+  <p class="subtitle">Explore various schemes provided by the Government</p>
+
+  <div class="cards">
+    <div class="card" *ngFor="let scheme of schemes">
+    <h2>{{ scheme.title }}</h2>
+    <p class="meta">
+      {{ scheme.description }}
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" [href]="scheme.link" target="_blank">
+        View Details
+      </a>
+    </div>
+  </div>
+
+  </div>
