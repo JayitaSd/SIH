@@ -13,6 +13,7 @@ regFormGroup=new FormGroup({
   email:new FormControl('',[Validators.required,Validators.email]),
   phone:new FormControl('',[Validators.required]),
   fullName:new FormControl('',[Validators.required]),
+  adminOrFarmer:new FormControl('Farmer',[Validators.required]),
   password:new FormControl('',[Validators.required]),
   confirmPassword:new FormControl('',[Validators.required]),
 

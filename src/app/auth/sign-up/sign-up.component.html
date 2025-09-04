@@ -26,7 +26,14 @@
       <input id="fullName" type="text" formControlName="fullName" required />
     </div>
     <p *ngIf="isFormControlError('fullName')" class="errors">Full name is required</p>
-
+    <!-- Admin or Farmer -->
+     <div class="label-input">
+      <label for="adminOrFarmer">Are you Admin or Farmer?</label>
+      <select name="adminOrFarmer" id="" formControlName="adminOrFarmer"> 
+        <option  value="Admin">Admin</option>
+        <option  value="Farmer">Farmer</option>
+   </select>
+    </div>
     <!-- Password -->
     <div class="label-input">
       <label for="password">Password</label>
