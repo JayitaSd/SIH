@@ -5,6 +5,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CropInfoFormComponent } from './analysis/crop-info-form/crop-info-form.component';
 import { SchemesComponent } from './analysis/schemes/schemes.component';
+import { HomeComponent } from './analysis/home/home.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,8 @@ const routes: Routes = [
     path:'Schemes',
     component: SchemesComponent
   }
+  ,{path:'Krushiyantra-Home',component:HomeComponent}
+  ,{path:'Profile',component:ProfileComponent}
 ];
 
 @NgModule({
