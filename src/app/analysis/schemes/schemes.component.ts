@@ -81,6 +81,11 @@ export class SchemesComponent {
     "title": "Paramparagat Krishi Vikas Yojana (PKVY)",
     "description": "Cluster-level organic farming promotion with training and certification support.",
     "link": "https://agricoop.nic.in"
+  },
+  {
+    title: "Rashtriya Krishi Vikas Yojana (RKVY-RAFTAAR)",
+    description: "Provides financial support to states for agriculture infrastructure, innovation, and agripreneurship incubation.",
+    link: "https://rkvy.nic.in"
   }
 ];
 }
