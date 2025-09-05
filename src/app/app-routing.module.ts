@@ -20,16 +20,22 @@ const routes: Routes = [
     path: 'SignUp',
     component: SignUpComponent
   }, 
-  
-
-
-  {path:'Crop-Details',component:CropInfoFormComponent},
+  {
+    path:'Crop-Details',
+    component:CropInfoFormComponent
+  },
   {
     path:'Schemes',
     component: SchemesComponent
+  },
+  {
+    path:'Krushiyantra-Home',
+    component:HomeComponent
+  },
+  {
+    path:'Profile',
+    component:ProfileComponent
   }
-  ,{path:'Krushiyantra-Home',component:HomeComponent}
-  ,{path:'Profile',component:ProfileComponent}
 ];
 
 @NgModule({
