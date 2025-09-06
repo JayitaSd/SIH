@@ -11,6 +11,10 @@ import { ProfileComponent } from './auth/profile/profile.component';
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'Login',
     component: LoginComponent
   },
   {
@@ -29,7 +33,7 @@ const routes: Routes = [
     component: SchemesComponent
   },
   {
-    path:'KrushiJantra-Home',
+    path:'Krushijantra-Home',
     component:HomeComponent
   },
   {
