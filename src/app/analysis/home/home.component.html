@@ -1,19 +1,105 @@
-<nav class="d-flex justify-content-between align-items-center p-3 bg-light w-100" style="position: fixed;top: 0;left: 0;height: 50px;">
-    <h2>KrushiYantra</h2>
-    <ul class="d-flex list-unstyled w-50  justify-content-evenly align-items-center">
-        <li (click)="navigateToPage('crop-info-form')">Enter a crop</li>
-        <li (click)="navigateToPage('analysis')">Analysis</li>
-        <li (click)="navigateToPage('profile')">Profile</li>
-    </ul>
+<div>
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top p-3 w-100">
+  <div class="container-fluid">
+    <h2 class="logo">KrushiJantra</h2>
+
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse p-3 bg-light" id="navbarContent" >
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-evenly w-50">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToPage('Crop-Details')">Enter a crop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToPage('Analysis')">Analysis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToPage('Profile')">Profile</a>
+        </li>
+      </ul>
+
+      <div class="d-flex auth-buttons gap-2">
+        <button class="login-btn btn " (click)="navigateToPage('Login')">Login</button>
+        <button class="signup-btn btn " (click)="navigateToPage('SignUp')">Signup</button>
+      </div>
+    </div>
+  </div>
 </nav>
-<div class="hero" style="position: relative;top: 50px;left: 0;">
+
+
+  <!-- Hero Section -->
+  <div class="hero">
     <div class="bg-image"></div>
     <div class="content">
-        <h2 class="text-">KrushiYantra</h2>
-        <h4 style="width: 50%;">
-            Where tradition meets intelligence for better harvests!
-        </h4>
-       
-
+      <h2>KrushiJantra</h2>
+      <h4>
+        Where tradition meets intelligence for better harvests!
+      </h4>
     </div>
+  </div>
+
+  <!-- Guide Section -->
+  <section class="guide">
+  <h2>How It Works</h2>
+  <div class="zigzag-steps">
+    <div class="z-step left">
+      <span class="z-step-number">1</span>
+      <div class="z-step-content">
+        <h4>🪪 Register</h4>
+        <p>Start by registering yourself on our website.</p>
+      </div>
+    </div>
+    <div class="z-step right">
+      <span class="z-step-number">2</span>
+      <div class="z-step-content">
+        <h4>🔑 Login</h4>
+        <p>Login to our website.</p>
+      </div>
+    </div>
+    <div class="z-step left">
+      <span class="z-step-number">3</span>
+      <div class="z-step-content">
+        <h4>🌱 Enter Your Crop</h4>
+        <p>Enter the crop information on the "Enter a Crop" page.</p>
+      </div>
+    </div>
+
+    <div class="z-step right">
+      <span class="z-step-number">4</span>
+      <div class="z-step-content">
+        <h4>📊 Get Insights</h4>
+        <p>Receive analysis and suggestions tailored for your crop on the "Analysis" page.</p>
+      </div>
+    </div>
+
+    <div class="z-step left">
+      <span class="z-step-number">5</span>
+      <div class="z-step-content">
+        <h4>📈 Track Progress</h4>
+        <p>Monitor crop health and track improvements over time.</p>
+      </div>
+    </div>
+
+    <div class="z-step right">
+      <span class="z-step-number">6</span>
+      <div class="z-step-content">
+        <h4>📶 Grow Smarter</h4>
+        <p>Use insights to improve your yield sustainably.</p>
+      </div>
+    </div>
+    <div class="z-step left">
+      <span class="z-step-number">7</span>
+      <div class="z-step-content">
+        <h4>📒 Check your Logs</h4>
+        <p>Check out your crops logs on the profile page along with your profile</p>
+      </div>
+    </div>
+  </div>
+</section>
 </div>

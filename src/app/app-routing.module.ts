@@ -29,7 +29,7 @@ const routes: Routes = [
     component: SchemesComponent
   },
   {
-    path:'Krushiyantra-Home',
+    path:'KrushiJantra-Home',
     component:HomeComponent
   },
   {
