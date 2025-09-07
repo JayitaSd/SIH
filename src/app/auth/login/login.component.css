@@ -8,11 +8,10 @@ form {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f3f7fb;
 }
 
 .login-form {
-  background-color: #e6f1fb;
+  background-color: #faf3cfff;
   padding: 3rem 2.5rem;
   border-radius: 1rem;
   width: 350px;
@@ -39,21 +38,21 @@ label {
 
 input {
   padding: 10px;
-  border: 1px solid #1a81e7;
+  border: 1px solid #000000;
   border-radius: 6px;
   font-size: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
-  border-color: #0b6cd4;
+  border: 2.3px solid #000000;
   outline: none;
   box-shadow: 0 0 4px rgba(26, 129, 231, 0.4);
 }
 
 .forgot-link {
   font-size: 0.9rem;
-  color: #1a81e7;
+  color: #c18b3aff;
   text-align: right;
   margin-bottom: 1.5rem;
   display: block;
@@ -68,7 +67,7 @@ input:focus {
 .login-btn {
   padding: 10px;
   width: 100%;
-  background-color: #1a81e7;
+  background-color: #c18b3aff;
   color: white;
   font-weight: bold;
   border: none;
@@ -79,6 +78,6 @@ input:focus {
 }
 
 .login-btn:hover {
-  background-color: #0f6ac7;
+  background-color: #91682aff;
   transform: translateY(-1px);
 }

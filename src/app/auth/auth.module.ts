@@ -28,12 +28,20 @@ import { RouterModule } from '@angular/router';
 import { FPwdComponent } from './f-pwd/f-pwd.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+<<<<<<< HEAD
+=======
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
+
+
+>>>>>>> 227b1f7aafcc2dded82ee7d519dc4d7f4fb5de83
 
 @NgModule({
   declarations: [
     FPwdComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
