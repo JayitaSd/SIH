@@ -81,3 +81,8 @@ input:focus {
   background-color: #91682aff;
   transform: translateY(-1px);
 }
+
+.error{
+  color: red;
+  font-weight: 600;
+}

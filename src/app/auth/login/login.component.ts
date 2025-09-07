@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   inValidCredentials = false;
-
+  
   constructor(private router: Router) {}
 
   loginForm = new FormGroup({
@@ -45,11 +45,17 @@ export class LoginComponent {
       this.inValidCredentials = true;
       return;
     }
-
+    localStorage.setItem('loggedInFarmerOrAdmin',JSON.stringify(this.getFormControl('email')));
     
   }
 
   navigateToForgotPW() {
     this.router.navigate(['ForgotPassword']);
   }
+
+  navigateToSignUp(){
+    this.router.navigate(['SignUp']);
+  }
+
+
 }

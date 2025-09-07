@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnalysisPageComponent } from './analysis-page/analysis-page.component';
 import { HomeComponent } from './home/home.component';
 import { SchemesComponent } from './schemes/schemes.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -13,11 +15,14 @@ import { SchemesComponent } from './schemes/schemes.component';
     CropInfoFormComponent,
     AnalysisPageComponent,
     HomeComponent,
-    SchemesComponent
+    SchemesComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
-    FormsModule,ReactiveFormsModule
+    FormsModule,ReactiveFormsModule,
+    AuthModule
   ]
+  
 })
 export class AnalysisModule { }

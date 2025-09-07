@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface User {
   name: string;
@@ -13,19 +13,18 @@ interface User {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User | null = null;
+  user?: any;
+  userDetails:any;
+  loggedInUser:any=localStorage.getItem('loggedInFarmerOrAdmin');
+  // if(loggedInUser)
 
   ngOnInit(): void {
-    // 🔹 Temporary mock data until backend is ready
-    this.user = {
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      phone: '+91-9876543210',
-      role: 'Admin'
-    };
+   
   }
 
   editUser() {
     alert('Edit user clicked!');
   }
+  
+
 }

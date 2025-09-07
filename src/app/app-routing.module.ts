@@ -7,6 +7,7 @@ import { CropInfoFormComponent } from './analysis/crop-info-form/crop-info-form.
 import { SchemesComponent } from './analysis/schemes/schemes.component';
 import { HomeComponent } from './analysis/home/home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { AnalysisPageComponent } from './analysis/analysis-page/analysis-page.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
     path:'Profile',
     component:ProfileComponent
   }
+  ,{path:'Analysis',component:AnalysisPageComponent}
 ];
 
 @NgModule({

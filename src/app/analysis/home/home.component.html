@@ -1,36 +1,7 @@
-<div>
+<div class="bg-light">
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top p-3 w-100">
-  <div class="container-fluid">
-    <h2 class="logo">KrushiJantra</h2>
+  <app-navbar></app-navbar>
 
-    <!-- Toggler button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
-      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse p-3 bg-light" id="navbarContent" >
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-evenly w-50">
-        <li class="nav-item">
-          <a class="nav-link" (click)="navigateToPage('Crop-Details')">Enter a crop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navigateToPage('Analysis')">Analysis</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navigateToPage('Profile')">Profile</a>
-        </li>
-      </ul>
-
-      <div class="d-flex auth-buttons gap-2">
-        <button class="login-btn btn " (click)="navigateToPage('Login')">Login</button>
-        <button class="signup-btn btn " (click)="navigateToPage('SignUp')">Signup</button>
-      </div>
-    </div>
-  </div>
-</nav>
 
 
   <!-- Hero Section -->
@@ -46,7 +17,7 @@
 
   <!-- Guide Section -->
   <section class="guide">
-  <h2>How It Works</h2>
+  <h2 class="text-dark text-center">How It Works</h2>
   <div class="zigzag-steps">
     <div class="z-step left">
       <span class="z-step-number">1</span>
