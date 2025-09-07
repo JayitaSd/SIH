@@ -2,12 +2,13 @@
   <div class="login-form">
     <h2>Login</h2>
 
-    <!-- Email -->
+    <!-- Phone -->
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" placeholder="Enter your email" formControlName="email" />
-      <p class="error" *ngIf="isEmailValid('email')">Email should be valid</p>
-      <p class="error" *ngIf="isEmailRequired('email')">Email is required</p>
+      <label for="phone">Phone</label>
+      <input type="text" placeholder="Enter your phone number" formControlName="phone" />
+      <p class="error" *ngIf="getFormControl('phone')?.touched && getFormControl('phone')?.errors?.['required']">
+        Phone is required
+      </p>
     </div>
 
     <!-- Password -->
@@ -20,6 +21,7 @@
 
     <button type="submit" class="login-btn">Login</button>
 
-    <p *ngIf="inValidCredentials" class="error">Invalid email or password</p>
+    <!-- ✅ error message update karo -->
+    <p *ngIf="inValidCredentials" class="error">Invalid phone or password</p>
   </div>
 </form>

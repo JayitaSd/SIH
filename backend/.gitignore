@@ -1,0 +1,5 @@
+.env
+node_modules
+password.txt
+signup.txt
+node_modules/

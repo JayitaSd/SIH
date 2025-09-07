@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Odisha Daily Weather Forecast</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #f4f4f4; }
+    select, button { padding: 6px; margin: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Odisha District Weather (5-Day Daily Forecast)</h2>
+
+  <label for="district">Select District: </label>
+  <select id="district" onchange="getWeather()">
+    <option value="Bhubaneswar,in">Bhubaneswar</option>
+    <option value="Cuttack,in">Cuttack</option>
+    <option value="Puri,in">Puri</option>
+    <option value="Balasore,in">Balasore</option>
+    <option value="Sambalpur,in">Sambalpur</option>
+    <option value="Rourkela,in">Rourkela</option>
+    <option value="Berhampur,in">Berhampur</option>
+    <option value="Angul,in">Angul</option>
+    <option value="Kendujhar,in">Kendujhar</option>
+    <option value="Koraput,in">Koraput</option>
+  </select>
+
+  <label for="lang">Choose Language:</label>
+  <select id="lang">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+    <option value="or">Odia</option>
+    <option value="mr">Marathi</option>
+  </select>
+
+  <button onclick="getWeather()">Get Forecast & Send Alerts</button>
+
+  <div id="forecast"></div>
+
+  <script>
+    const API_KEY = "29af75e3d2c4ad17fc10824bada6d84c";
+
+    async function getWeather() {
+      const city = document.getElementById("district").value;
+      const lang = document.getElementById("lang").value;
+      document.getElementById("forecast").innerHTML = "<p>Loading...</p>";
+
+      try {
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`);
+        const data = await res.json();
+        if (!data.list) return document.getElementById("forecast").innerHTML = "<p>Error: "+data.message+"</p>";
+
+        const dailyData = {};
+        data.list.forEach(item => {
+          const date = item.dt_txt.split(" ")[0];
+          if (!dailyData[date]) dailyData[date] = { temps: [], humidities: [], pressures: [], winds: [], descriptions: [] };
+          dailyData[date].temps.push(item.main.temp);
+          dailyData[date].humidities.push(item.main.humidity);
+          dailyData[date].pressures.push(item.main.pressure);
+          dailyData[date].winds.push(item.wind.speed);
+          dailyData[date].descriptions.push(item.weather[0].description);
+        });
+
+        let table = `<h3>5-Day Daily Forecast for ${city}</h3>
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Avg Temp (°C)</th>
+              <th>Avg Humidity (%)</th>
+              <th>Avg Pressure (hPa)</th>
+              <th>Avg Wind (m/s)</th>
+              <th>Alert</th>
+            </tr>`;
+
+        for (const date of Object.keys(dailyData).slice(0,5)) {
+          const d = dailyData[date];
+          const avg = arr => (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1);
+          const desc = mostFrequent(d.descriptions);
+
+          const summary = { description: desc, wind: avg(d.winds), temp: avg(d.temps), pressure: avg(d.pressures) };
+          const alertMsg = checkExtremeWeather(summary);
+
+          if (alertMsg) {
+            // Send alert to backend with selected language
+            fetch("http://localhost:3000/send-sms", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ alertMsg, city, date, lang })
+            }).then(res=>res.json()).then(data=>console.log("SMS sent:", data)).catch(err=>console.error(err));
+          }
+
+          table += `<tr>
+            <td>${date}</td>
+            <td>${desc}</td>
+            <td>${avg(d.temps)}</td>
+            <td>${avg(d.humidities)}</td>
+            <td>${avg(d.pressures)}</td>
+            <td>${avg(d.winds)}</td>
+            <td>${alertMsg ? alertMsg : "✅ Safe"}</td>
+          </tr>`;
+        }
+
+        table += "</table>";
+        document.getElementById("forecast").innerHTML = table;
+
+      } catch (err) {
+        document.getElementById("forecast").innerHTML = "Error fetching data: " + err;
+      }
+    }
+
+    function mostFrequent(arr) {
+      return arr.sort((a,b)=>arr.filter(v=>v===a).length - arr.filter(v=>v===b).length).pop();
+    }
+
+    function checkExtremeWeather(d) {
+      const desc = d.description.toLowerCase();
+      if (desc.includes("heavy rain") || desc.includes("thunderstorm") || desc.includes("moderate rain")) return "⚠️ Rain Alert";
+      if (d.wind > 7) return "🌪️ High Wind Alert";
+      if (d.temp > 35) return "🔥 Heatwave Alert";
+      if (d.pressure < 1002) return "🌧️ Low Pressure Alert";
+      return null;
+    }
+
+    // Default load
+    getWeather();
+  </script>
+</body>
+</html>
