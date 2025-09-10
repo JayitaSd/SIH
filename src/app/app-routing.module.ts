@@ -8,6 +8,8 @@ import { SchemesComponent } from './analysis/schemes/schemes.component';
 import { HomeComponent } from './analysis/home/home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { AnalysisPageComponent } from './analysis/analysis-page/analysis-page.component';
+import { ChatBotComponent } from './analysis/chat-bot/chat-bot.component';
+import { WeatherAlertsComponent } from './admin/weather-alerts/weather-alerts.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,8 @@ const routes: Routes = [
     component:ProfileComponent
   }
   ,{path:'Analysis',component:AnalysisPageComponent}
+  ,{path:'chatBot',component:ChatBotComponent}
+  ,{path:'weather-alerts',component:WeatherAlertsComponent}
 ];
 
 @NgModule({

@@ -1,8 +1,28 @@
 
+    <!-- Password -->
+    <!-- <div class="label-input">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" required />
+    </div>
+    <p *ngIf="isFormControlError('password')" class="errors">Password is required</p> -->
+
+    <!-- Confirm Password -->
+    <!-- <div class="label-input">
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" required />
+    </div>
+    <p *ngIf="isFormControlError('confirmPassword')" class="errors">Confirmation required</p>
+    <p *ngIf="checkPassword()" class="errors">Passwords don't match</p> -->
+
+    <!-- Submit Button -->
+    <!-- <button [disabled]="regFormGroup.invalid || usernameError" class="reg-btn">Register</button>
+  </form>
+</div>  -->
+
 <div class="container">
-  <form class="reg-form" [formGroup]="regFormGroup" (ngSubmit)="submitData()">
-    <h2 class=" text-center my-2">Register</h2>
-    
+  <form class="reg-form" [formGroup]="regFormGroup">
+    <h2 class="text-center my-2">Register</h2>
+
     <!-- Email -->
     <div class="label-input">
       <label for="email">Email</label>
@@ -20,20 +40,25 @@
     </div>
     <p *ngIf="isFormControlError('phone')" class="errors">Phone number is required</p>
 
+    
+
+
     <!-- Full Name -->
     <div class="label-input">
       <label for="fullName">Full Name</label>
       <input id="fullName" type="text" formControlName="fullName" required />
     </div>
     <p *ngIf="isFormControlError('fullName')" class="errors">Full name is required</p>
+
     <!-- Admin or Farmer -->
-     <div class="label-input">
+    <div class="label-input">
       <label for="adminOrFarmer">Are you Admin or Farmer?</label>
-      <select name="adminOrFarmer" id="" formControlName="adminOrFarmer"> 
-        <option  value="Admin">Admin</option>
-        <option  value="Farmer">Farmer</option>
-   </select>
+      <select name="adminOrFarmer" formControlName="adminOrFarmer">
+        <option value="Admin">Admin</option>
+        <option value="Farmer">Farmer</option>
+      </select>
     </div>
+
     <!-- Password -->
     <div class="label-input">
       <label for="password">Password</label>
@@ -49,7 +74,32 @@
     <p *ngIf="isFormControlError('confirmPassword')" class="errors">Confirmation required</p>
     <p *ngIf="checkPassword()" class="errors">Passwords don't match</p>
 
-    <!-- Submit Button -->
-    <button [disabled]="regFormGroup.invalid || usernameError" class="reg-btn">Register</button>
+    <!-- OTP Input -->
+    <!-- <div *ngIf="otpSent" class="label-input">
+      <label for="otp">Enter OTP</label>
+      <input id="otp" type="text" [(ngModel)]="otpCode" name="otp" required />
+      <button type="button" (click)="verifyOtp()">Verify OTP</button>
+    </div> -->
+
+    <!-- OTP Input -->
+<div *ngIf="otpSent" class="label-input">
+  <label for="otp">Enter OTP</label>
+  <input id="otp" type="text" formControlName="otp" placeholder="Enter OTP" required />
+  <p *ngIf="isFormControlError('otp')" class="errors">OTP is required</p>
+  <button type="button" (click)="verifyOtp()">Verify OTP</button>
+</div>
+
+
+    <button type="button" class="otp-btn" (click)="sendOtp()" *ngIf="!otpSent">
+      Send OTP
+    </button>
+    <!-- Final Register Button (after OTP verified) -->
+    <button 
+      type="button" 
+      class="reg-btn" 
+      (click)="registerUser()" 
+      [disabled]="regFormGroup.invalid || usernameError || !otpVerified">
+      Register
+    </button>
   </form>
 </div>

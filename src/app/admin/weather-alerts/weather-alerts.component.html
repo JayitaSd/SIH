@@ -1,0 +1,31 @@
+<div class="body">
+  <h2>Odisha District Weather (5-Day Daily Forecast)</h2>
+
+  <label for="district">Select District: </label>
+  <select id="district" (change)="getWeather()">
+    <option value="Bhubaneswar,in">Bhubaneswar</option>
+    <option value="Cuttack,in">Cuttack</option>
+    <option value="Puri,in">Puri</option>
+    <option value="Balasore,in">Balasore</option>
+    <option value="Sambalpur,in">Sambalpur</option>
+    <option value="Rourkela,in">Rourkela</option>
+    <option value="Berhampur,in">Berhampur</option>
+    <option value="Angul,in">Angul</option>
+    <option value="Kendujhar,in">Kendujhar</option>
+    <option value="Koraput,in">Koraput</option>
+  </select>
+
+  <label for="lang">Choose Language:</label>
+  <select id="lang">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+    <option value="or">Odia</option>
+    <option value="mr">Marathi</option>
+  </select>
+
+  <button onclick="getWeather()">Get Forecast & Send Alerts</button>
+
+  <div id="forecast"></div>
+
+ 
+</div>

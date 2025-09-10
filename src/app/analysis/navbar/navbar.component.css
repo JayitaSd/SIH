@@ -50,7 +50,7 @@
   transition: all 0.3s ease;
 }
 
-.login-btn:hover {
+.login-btn:hover,#languageDropdown:hover {
   background-color:  #25b152ff;
   color: white;
 }

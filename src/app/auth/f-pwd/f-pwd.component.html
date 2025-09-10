@@ -2,25 +2,25 @@
   <div class="container">
     <h2>Forgot Password</h2>
 
-    <!-- Step 1: Email -->
-    <div id="step1">
-      <input type="email" id="email" placeholder="Enter your email" required>
-      <button onclick="sendOTP()">Send OTP</button>
+    <!-- Step 1: Phone -->
+    <div *ngIf="step===1">
+      <input type="text" [(ngModel)]="phone" placeholder="Enter your phone number" required>
+      <button (click)="sendOTP()">Send OTP</button>
     </div>
 
     <!-- Step 2: OTP -->
-    <div id="step2" class="hidden">
-      <input type="text" id="otp" placeholder="Enter OTP" required>
-      <button onclick="verifyOTP()">Verify OTP</button>
+    <div *ngIf="step===2">
+      <input type="text" [(ngModel)]="otp" placeholder="Enter OTP" required>
+      <button (click)="verifyOTP()">Verify OTP</button>
     </div>
 
     <!-- Step 3: Reset Password -->
-    <div id="step3" class="hidden">
-      <input type="password" id="newPass" placeholder="New Password" required>
-      <input type="password" id="confirmPass" placeholder="Confirm Password" required>
-      <button onclick="resetPassword()">Submit</button>
+    <div *ngIf="step===3">
+      <input type="password" [(ngModel)]="newPass" placeholder="New Password" required>
+      <input type="password" [(ngModel)]="confirmPass" placeholder="Confirm Password" required>
+      <button (click)="resetPassword()">Submit</button>
     </div>
 
-    <p id="message" class="msg"></p>
+    <div [ngClass]="messageClass">{{ message }}</div>
   </div>
 </div>

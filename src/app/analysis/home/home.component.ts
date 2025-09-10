@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  
 constructor(private router:Router){}
 navigateToPage(page:string){
   this.router.navigate([page]);
 }
 
+  
 translations :any= {
   en: {
     navCrop: "Enter a crop",
@@ -107,6 +109,7 @@ translations :any= {
 
 // Handle language dropdown click
 ngOnInit(): void {
+  
   (document.querySelectorAll(".lang-option") as NodeListOf<Element>).forEach(option => {
     option.addEventListener("click", () => {
       const lang = option.getAttribute("data-lang");
