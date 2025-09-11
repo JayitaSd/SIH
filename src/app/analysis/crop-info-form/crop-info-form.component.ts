@@ -32,21 +32,7 @@ isFormControlError(name:string){
       return;
     }
   
-const userData = this.cropFormGroup.value;
-
-    // ✅ Send data to backend using service
-    // this.registerService.registerUser(userData).subscribe({
-    //   next: (response) => {
-    //     console.log('User registered:', response);
-    //     alert('Registration successful!');
-    //     this.cropFormGroup.reset();
-    //   },
-    //   error: (err) => {
-    //     console.error('Registration error:', err);
-    //     alert(err.error?.message || 'Registration failed!');
-    //   },
-    // });
-  }
+const userData = this.cropFormGroup.value;  }
 
   
 }

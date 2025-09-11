@@ -24,7 +24,7 @@
 //       return;
 //     }
 //     this.step = 2;
-//     this.message = `OTP has been sent to ${this.email}`;
+//     this.message = OTP has been sent to ${this.email};
 //     this.messageClass = 'msg';
 //   }
 

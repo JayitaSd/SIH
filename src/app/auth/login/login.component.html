@@ -1,6 +1,13 @@
-<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-  <div class="login-form">
-    <h2>Login</h2>
+<div class="login-container">
+  <div class="card-login">
+    <div class="card-left">
+      <div class="icon-container">
+        <img src="../../../assets/farmer_prof.jpg" alt="Login Image" class="login-image" />
+      </div>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <div class="login-form">
+        <h2>Login</h2>
 
     <!-- Phone -->
     <div class="form-group">
@@ -18,11 +25,18 @@
       <p class="error" *ngIf="isEmailRequired('password')">Password is required</p>
     </div>
 
-    <a (click)="navigateToForgotPW()" class="forgot-link">Forgot password?</a>
+        <a (click)="navigateToForgotPW()" class="forgot-link">Forgot password?</a>
 
-    <button type="submit" class="login-btn">Login</button>
+        <button type="submit" class="login-btn">LOGIN</button>
 
-    <!-- ✅ error message update karo -->
-    <p *ngIf="inValidCredentials" class="error">Invalid phone or password</p>
+        <p *ngIf="inValidCredentials" class="error">Invalid phone or password</p>
+
+        <div class="or-divider">
+          <hr>
+          <span><a (click)="navigateToRegister()" class="signup-link">Create your account</a></span>
+          <hr>
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+</div>

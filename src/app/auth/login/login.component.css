@@ -3,82 +3,164 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-form {
+body {
+  margin: 0;
+}
+
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
+  /* Updated background to match the template's gradient */
+  background: linear-gradient(135deg, #e3ffe9ff 30%, #66cc79ff 70%);
 }
 
-.login-form {
-  background-color: #faf3cfff;
-  padding: 3rem 2.5rem;
-  border-radius: 1rem;
-  width: 350px;
+.card-login {
+  display: flex;
+  width: 700px; /* Adjust as needed */
+  background-color: #fff;
+  border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensures child elements don't spill over rounded corners */
+}
+
+.card-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f9fc;
+  border-right: 1px solid #eee;
+  padding: 2rem;
+  transform: translateX(-100%);
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.login-image {
+  max-width: 100%; /* Ensures the image doesn't overflow its container */
+  max-height: 100%; /* Keeps the image within its container's height */
+  object-fit: contain; /* Scales the image to fit without stretching */
+  display: block; /* Removes any default bottom margin */
+  border-radius: 8px; /* Optional: adds a slight corner radius to the image */
+}
+
+.icon-container {
+  /* Style for the icon and its surrounding elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.icon-container svg {
+  width: 50%;
+  height: 50%;
+}
+
+form {
+  flex: 1; /* Makes the form take up the remaining space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  transform: translateX(100%);
+  animation: slideInRight 1s ease-out forwards;
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.login-form {
+  background-color: #fff; /* Changed to match the template */
+  padding: 0; /* Removed padding as it's handled by the form's parent */
+  border-radius: 0; /* Removed border-radius */
+  width: 100%; /* Take full width of its container */
+  box-shadow: none; /* Removed box-shadow as it's on the main card */
 }
 
 .login-form h2 {
   margin-bottom: 1.5rem;
-  color: #032d5b;
+  color: #000;
+  text-align: left; /* Aligned to the left */
+  font-weight: 600;
   text-align: center;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Increased margin for better spacing */
 }
 
 label {
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #333;
+  display: none; /* Hide labels to match the template's placeholder style */
 }
 
 input {
-  padding: 10px;
-  border: 1px solid #000000;
-  border-radius: 6px;
+  padding: 12px 15px; /* Increased padding */
+  border: 1px solid #ccc; /* Updated border color */
+  border-radius: 30px; /* Rounded corners for input fields */
   font-size: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f7f9fc; /* Light background color */
 }
 
 input:focus {
-  border: 2.3px solid #000000;
+  border-color: #3e81e9;
   outline: none;
-  box-shadow: 0 0 4px rgba(26, 129, 231, 0.4);
+  box-shadow: 0 0 4px rgba(62, 129, 233, 0.4);
 }
 
-.forgot-link {
-  font-size: 0.9rem;
-  color: #c18b3aff;
-  text-align: right;
-  margin-bottom: 1.5rem;
+.forgot-link, .signup-link {
+  font-size: 0.8rem; /* Smaller font size */
+  color: #888; /* Softer color */
+  text-align: center; /* Centered */
+  margin-bottom: 2rem;
   display: block;
   text-decoration: none;
   cursor: pointer;
 }
 
-.forgot-link:hover {
+.forgot-link:hover, .signup-link:hover {
   text-decoration: underline;
 }
 
 .login-btn {
-  padding: 10px;
+  padding: 12px; /* Increased padding */
   width: 100%;
-  background-color: #c18b3aff;
+  background-color: #6cbe46; /* Updated button color */
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 6px;
-  font-size: 15px;
+  border-radius: 30px; /* Rounded button */
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .login-btn:hover {
-  background-color: #91682aff;
+  background-color: #5aa13b;
   transform: translateY(-1px);
 }
 

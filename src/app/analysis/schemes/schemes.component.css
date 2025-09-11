@@ -1,3 +1,7 @@
+.outer{
+  background: linear-gradient(135deg, #e3ffe9ff 30%, #66cc79ff 70%);
+  margin:0;
+}
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height:100vh;
@@ -19,11 +23,11 @@ h1{
   width:min(1200px,100%);
   margin: auto;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap:22px;
 }
 .card{
-  background: #faf3cfff;
+  background: #e1facfff;
   color:#222;
   border-radius:18px;
   box-shadow:0 10px 24px rgba(0,0,0,.15);
@@ -42,7 +46,7 @@ h1{
   line-height:1.6; 
 }
 .btn{
-  background: #c18b3aff;
+  background: #3c9711ff;
   border: none;
   border-radius:999px;
   padding:10px 16px;
@@ -51,5 +55,35 @@ h1{
   margin-top:10px;
 }
 .btn:hover{ 
-  background: #a67300ff; 
+  background: #5aa13b; 
+}
+
+/* Large tablets: 3 cards per row */
+@media (max-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets: 2 cards per row */
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 16px;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
 }
