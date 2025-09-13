@@ -1,4 +1,4 @@
-.body { 
+/* .body { 
     font-family: Arial, sans-serif;
      padding: 20px; }
 table { 
@@ -17,4 +17,122 @@ th {
     background: #f4f4f4; }
 select, button { 
     padding: 6px; 
-    margin: 5px; }
+    margin: 5px; } */
+
+    .body {  
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f9f0 0%, #c1f0d9 40%, #ffffff 100%);
+  color: #222;
+}
+
+h2 {
+  text-align: center;
+  color: #2e7d32; /* Deep green */
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 8px;
+  color: #2e7d32;
+}
+
+select, button {
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 6px;
+  border: 1px solid #66bb6a;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #388e3c;
+  box-shadow: 0 0 6px rgba(56, 142, 60, 0.3);
+}
+
+button {
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #57a65b, #388e3c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Table styles */
+::ng-deep .forecast-table {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+::ng-deep .forecast-table th,
+::ng-deep .forecast-table td {
+  /* border: 1px solid #ddd; */
+  padding: 12px 16px;
+  text-align: center;
+}
+
+::ng-deep .forecast-table th {
+  background: #43a047;
+  color: white;
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: center;
+ 
+}
+td{
+    margin:100px;
+    text-align: center;
+}
+th {
+  background: #43a047;
+  color: white;
+  font-weight: bold;
+}
+
+::ng-deep tr:nth-child(even) {
+  background: #dffdd3ff;
+}
+
+::ng-deep tr:hover {
+  background: #caffd6ff;
+  transition: 0.2s ease;
+}
+
+/* Forecast container */
+#forecast {
+  margin-top: 20px;
+  padding: 15px;
+  background: #ffffffcc;
+  border: 1px solid #a5d6a7;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}

@@ -34,15 +34,15 @@ export class WeatherAlertsComponent {
         });
 
         let table = `<h3>5-Day Daily Forecast for ${cityValue}</h3>
-          <table>
+          <table class="forecast-table">
             <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Avg Temp (°C)</th>
-              <th>Avg Humidity (%)</th>
-              <th>Avg Pressure (hPa)</th>
-              <th>Avg Wind (m/s)</th>
-              <th>Alert</th>
+              <th style="margin:10px">Date</th>
+              <th style="margin:10px">Description</th>
+              <th style="margin:10px">Avg Temp (°C)</th>
+              <th style="margin:10px">Avg Humidity (%)</th>
+              <th style="margin:10px">Avg Pressure (hPa)</th>
+              <th style="margin:10px">Avg Wind (m/s)</th>
+              <th style="margin:10px">Alert</th>
             </tr>`;
 
         for (const date of Object.keys(dailyData).slice(0,5)) {
@@ -63,13 +63,13 @@ export class WeatherAlertsComponent {
           }
 
           table += `<tr>
-            <td>${date}</td>
-            <td>${desc}</td>
-            <td>${avg(d.temps)}</td>
-            <td>${avg(d.humidities)}</td>
-            <td>${avg(d.pressures)}</td>
-            <td>${avg(d.winds)}</td>
-            <td>${alertMsg ? alertMsg : "✅ Safe"}</td>
+            <td style="margin:10px">${date}</td>
+            <td style="margin:10px">${desc}</td>
+            <td style="margin:10px">${avg(d.temps)}</td>
+            <td style="margin:10px">${avg(d.humidities)}</td>
+            <td style="margin:10px">${avg(d.pressures)}</td>
+            <td style="margin:10px">${avg(d.winds)}</td>
+            <td style="margin:10px">${alertMsg ? alertMsg : "✅ Safe"}</td>
           </tr>`;
         }
 

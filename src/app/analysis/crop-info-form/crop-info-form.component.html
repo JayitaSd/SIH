@@ -6,31 +6,81 @@
     <h2 class=" text-center my-2">Crop Details</h2>
 
     <div class="label-input">
-      <input id="location" type="text" formControlName="location" placeholder="Location" required />
-    </div>
-    <p *ngIf="isFormControlError('location')" class="errors">Location is required</p>
 
-    <div class="label-input">
-      <select name="soilType" id="" formControlName="soilType">
-        <option *ngFor="let type of soilTypes" value={{type}}>{{type}}</option>
+      <select name="district" id="district" formControlName="district">
+        <option value="" disabled>Select District</option>
+        <option *ngFor="let type of districts" value={{type}}>{{type}}</option>
       </select>
     </div>
+    <p *ngIf="isFormControlError('district')" class="errors">District is required</p>
 
     <div class="label-input">
-      <select name="irrigationType" id="" formControlName="irrigationType">
-        <option *ngFor="let type of irrigationTypes" value={{type}}>{{type}}</option>
+
+      <select name="crop" id="crop" formControlName="crop">
+        <option value="" disabled>Select Crop</option>
+        <option *ngFor="let type of crops" value={{type}}>{{type}}</option>
       </select>
     </div>
+    <p *ngIf="isFormControlError('crop')" class="errors">Crop is required</p>
+    <div class="label-input">
+
+      <select name="season" id="season" formControlName="season">
+        <option value="" disabled>Select season</option>
+        <option *ngFor="let type of seasons" value={{type}}>{{type}}</option>
+      </select>
+    </div>
+    <p *ngIf="isFormControlError('seasons')" class="errors">Season is required</p>
+    <div class="label-input">
+
+      <input type="number" min="1" name="sown-area" id="sown-area" formControlName="sownArea"
+        placeholder="Enter Sown Area (in hectares)" />
+    </div>
+    <div class="label-input">
+      <input type="number" min="0" name="fertilizer-use" id="fertilizer-use" formControlName="fertilizerUse"
+        placeholder="Enter Fertilizer use (tonne/ha)" />
+    </div>
+
 
     <div class="label-input">
-      <input id="yield" type="number" formControlName="yield" placeholder="How much was your yield last year?" required />
+      <input type="number" min="0" name="pesticide-use" id="pesticide-use" formControlName="pesticideUse"
+        placeholder="Enter Pesticide use (tonne/ha)" step="any" />
     </div>
-    <p *ngIf="isFormControlError('yield')" class="errors">Yield is required</p>
+
 
     <div class="label-input">
-      <input id="fertilizers" type="text" formControlName="fertilizers" placeholder="Tell us the Fertilizers used on the soil" required />
+      <input type="number" min="0" max="100" name="avg-temperature" id="avg-temperature"
+        formControlName="avgTemperature" placeholder="Enter Avg temperature (°C)" step="any" />
     </div>
-    <p *ngIf="isFormControlError('fertilizers')" class="errors">Fertilizers is required</p>
+
+
+    <div class="label-input">
+      <input type="number" min="0" max="100" name="avg-humidity" id="avg-humidity" formControlName="avgHumidity"
+        placeholder="Enter Avg humidity (%)" step="any" />
+    </div>
+
+
+    <div class="label-input">
+      <input type="number" min="0" max="100" name="soil-n" id="soil-n" formControlName="soilN"
+        placeholder="Enter Soil N (%)" step="any" />
+    </div>
+
+
+    <div class="label-input">
+      <input type="number" min="0" max="100" name="soil-p" id="soil-p" formControlName="soilP"
+        placeholder="Enter Soil P (%)" step="any" />
+    </div>
+
+
+    <div class="label-input">
+      <input type="number" min="0" max="100" name="soil-k" id="soil-k" formControlName="soilK"
+        placeholder="Enter Soil K (%)" step="any" />
+    </div>
+
+
+    <div class="label-input">
+      <input type="number" min="1" max="14" name="soil-ph" id="soil-ph" formControlName="soilPH"
+        placeholder="Enter Soil pH (1 - 14)" step="any" />
+    </div>
 
     <button [disabled]="cropFormGroup.invalid" class="submit-btn">Submit</button>
   </form>

@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthModule } from '../auth/auth.module';
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
 import { ReactHostComponent } from './react-host/react-host.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -25,7 +26,7 @@ import { ReactHostComponent } from './react-host/react-host.component';
   imports: [
     
     FormsModule,ReactiveFormsModule,
-    AuthModule
+    AuthModule,CommonModule
     
   ]
   ,schemas: [CUSTOM_ELEMENTS_SCHEMA] 

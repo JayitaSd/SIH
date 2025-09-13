@@ -1,0 +1,51 @@
+<div class="admin-body">
+  <h2 class="text-center">Admin Management</h2>
+
+  <!-- Add Admin Form -->
+  <form (ngSubmit)="addAdmin()" #adminForm="ngForm" class="admin-form text-center">
+    <label for="phone">Enter Admin Phone Number:</label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      [(ngModel)]="newAdminPhone"
+      placeholder="Enter phone number"
+      pattern="[0-9]{10}"
+      required
+    />
+    <button type="submit" [disabled]="!adminForm.valid">Add Admin</button>
+  </form>
+
+  <!-- Existing Admins Table -->
+  <h3>Existing Admins</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Sr No.</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admin of admins; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <input
+            type="tel"
+            [(ngModel)]="editIndex === i ? editedPhone : admins[i]"
+            [readonly]="editIndex !== i"
+            [ngModelOptions]="{standalone: true}"
+            pattern="[0-9]{10}"
+            required
+          />
+        </td>
+        <td>
+          <!-- Show Edit/Save based on state -->
+          <button *ngIf="editIndex !== i" (click)="startEdit(i)">✏️ Edit</button>
+          <button *ngIf="editIndex === i" (click)="saveEdit(i)">💾 Save</button>
+          <button (click)="deleteAdmin(i)">🗑️ Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

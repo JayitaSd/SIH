@@ -2,7 +2,7 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-//testing committttt: ho jaa bhaiiii
+
 body {
   margin: 0;
 }
@@ -16,6 +16,7 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
+  
 }
 
 /* Left side (image container) */
@@ -46,15 +47,15 @@ body {
   flex: 1 1 50%;
   max-width: none;
   background: linear-gradient(135deg, #e3ffe9ff 30%, #66cc79ff 70%);
-  padding: 2.5rem;
+  padding:2.5rem;
   border-radius: 0; /* Remove border-radius on the form itself, it's on the main container */
   box-shadow: none;
-  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px; /* Add space between form elements */
+  justify-content: flex-start;
+  gap: 10px; /* Add space between form elements */
+  overflow-y: scroll; /* Enable vertical scrolling if needed */
   
   animation: slideInRight 1s ease-out forwards;
 }
@@ -71,12 +72,14 @@ body {
 }
 
 .label-input {
+
+
   width: 100%; /* Ensure inputs take full width of the form container */
 }
 
-label {
-  display: none; /* Hide labels, use placeholders instead */
-}
+/* label {
+  display: none; 
+} */
 
 input, select {
   padding: 12px 15px;
@@ -145,6 +148,7 @@ input:focus, select:focus {
   .crop-form {
     height: 80vh;
     padding: 2rem 1rem;
+    overflow-y: auto;
   }
   .side-image {
     height: 100%;
@@ -170,6 +174,7 @@ input:focus, select:focus {
     height: 100vh;
     padding: 1.5rem 0.5rem;
     gap: 10px;
+    overflow-y: auto;
   }
   input, select, .submit-btn {
     width: 90%;
@@ -200,6 +205,7 @@ input:focus, select:focus {
     height: auto;
     padding: 1rem 0.2rem;
     gap: 8px;
+    overflow-y: auto;
   }
   input, select, .submit-btn {
     width: 98%;

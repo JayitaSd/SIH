@@ -362,7 +362,17 @@ app.post("/send-sms", async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 });
+//ml integrate
+app.post("/predict", async (req, res) => {
+  const response = await fetch("http://localhost:3000/predict", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(req.body),
+  });
 
+  const prediction = await response.json();
+  res.json(prediction);
+});
 // ========================
 // 🔹 START SERVER
 // ========================
