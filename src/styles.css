@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.goog-te-banner {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
