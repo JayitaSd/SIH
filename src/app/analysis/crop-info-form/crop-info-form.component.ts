@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CropsServiceService } from 'src/app/services/crops-service.service';
 
 @Component({
   selector: 'app-crop-info-form',
@@ -7,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./crop-info-form.component.css']
 })
 export class CropInfoFormComponent {
+  constructor(private cropsService:CropsServiceService){}
 soilTypes=[]
 irrigationTypes=[]
 districts=["Angul",
@@ -44,16 +46,16 @@ seasons=["Kharif","Rabi","Summer","Autumn","Whole year","Winter"]
 cropFormGroup=new FormGroup({
   district:new FormControl('',[Validators.required]),
   crop:new FormControl('',[Validators.required]),
-  sownArea:new FormControl("",[Validators.required]),
+  area:new FormControl("",[Validators.required]),
   season:new FormControl("",[Validators.required]),
  fertilizerUse:new FormControl('',[Validators.required]),
  pesticideUse:new FormControl('',[Validators.required]),
- avgTemperature:new FormControl('',[Validators.required]),
- avgHumidity:new FormControl('',[Validators.required]),
- soilN:new FormControl('',[Validators.required]),
- soilP:new FormControl('',[Validators.required]),
- soilK:new FormControl('',[Validators.required]),
- soilPH:new FormControl('',[Validators.required])
+ temp:new FormControl('',[Validators.required]),
+ humidity:new FormControl('',[Validators.required]),
+ n:new FormControl('',[Validators.required]),
+ p:new FormControl('',[Validators.required]),
+ k:new FormControl('',[Validators.required]),
+ pH:new FormControl('',[Validators.required])
 
   
 })
@@ -70,8 +72,31 @@ isFormControlError(name:string){
       alert('Please fill all fields correctly');
       return;
     }
-  
-const userData = this.cropFormGroup.value;  }
 
-  
-}
+    const userData = {
+      district: this.cropFormGroup.get('district')!.value,
+      crop: this.cropFormGroup.get('crop')!.value,
+      season: this.cropFormGroup.get('season')!.value,
+      area: this.cropFormGroup.get('area')!.value,
+      fertilizerUse: this.cropFormGroup.get('fertilizerUse')!.value,
+      pesticideUse: this.cropFormGroup.get('pesticideUse')!.value,
+      temp: this.cropFormGroup.get('temp')!.value,
+      humidity: this.cropFormGroup.get('humidity')!.value,
+      n: this.cropFormGroup.get('n')!.value,
+      p: this.cropFormGroup.get('p')!.value,
+      k: this.cropFormGroup.get('k')!.value,
+      pH: this.cropFormGroup.get('pH')!.value
+    };
+
+    this.cropsService.addCrop(userData).subscribe({
+      next: (res) => {
+        alert('Crop data saved successfully');
+        this.cropFormGroup.reset();
+      },
+      error: (err) => {
+        alert('Error saving crop data');
+        console.error(err);
+      }
+    });
+  }
+}  

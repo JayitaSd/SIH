@@ -33,7 +33,7 @@
     <p *ngIf="isFormControlError('seasons')" class="errors">Season is required</p>
     <div class="label-input">
 
-      <input type="number" min="1" name="sown-area" id="sown-area" formControlName="sownArea"
+      <input type="number" min="1" name="sown-area" id="sown-area" formControlName="area"
         placeholder="Enter Sown Area (in hectares)" />
     </div>
     <div class="label-input">
@@ -50,36 +50,36 @@
 
     <div class="label-input">
       <input type="number" min="0" max="100" name="avg-temperature" id="avg-temperature"
-        formControlName="avgTemperature" placeholder="Enter Avg temperature (°C)" step="any" />
+        formControlName="temp" placeholder="Enter Avg temperature (°C)" step="any" />
     </div>
 
 
     <div class="label-input">
-      <input type="number" min="0" max="100" name="avg-humidity" id="avg-humidity" formControlName="avgHumidity"
+      <input type="number" min="0" max="100" name="avg-humidity" id="avg-humidity" formControlName="humidity"
         placeholder="Enter Avg humidity (%)" step="any" />
     </div>
 
 
     <div class="label-input">
-      <input type="number" min="0" max="100" name="soil-n" id="soil-n" formControlName="soilN"
+      <input type="number" min="0" max="100" name="soil-n" id="soil-n" formControlName="n"
         placeholder="Enter Soil N (%)" step="any" />
     </div>
 
 
     <div class="label-input">
-      <input type="number" min="0" max="100" name="soil-p" id="soil-p" formControlName="soilP"
+      <input type="number" min="0" max="100" name="soil-p" id="soil-p" formControlName="p"
         placeholder="Enter Soil P (%)" step="any" />
     </div>
 
 
     <div class="label-input">
-      <input type="number" min="0" max="100" name="soil-k" id="soil-k" formControlName="soilK"
+      <input type="number" min="0" max="100" name="soil-k" id="soil-k" formControlName="k"
         placeholder="Enter Soil K (%)" step="any" />
     </div>
 
 
     <div class="label-input">
-      <input type="number" min="1" max="14" name="soil-ph" id="soil-ph" formControlName="soilPH"
+      <input type="number" min="1" max="14" name="soil-ph" id="soil-ph" formControlName="pH"
         placeholder="Enter Soil pH (1 - 14)" step="any" />
     </div>
 

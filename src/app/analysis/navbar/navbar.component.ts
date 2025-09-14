@@ -14,8 +14,6 @@ constructor(private router:Router){}
 navigateToPage(page:string){
   this.router.navigate([page]);
 }
-ngOnInit(){
-  
-  // localStorage.removeItem('isLoggedIn')
-}
+
+
 }

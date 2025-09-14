@@ -63,3 +63,26 @@
 .signup-btn:hover {
   background-color:  #25b152ff;
 }
+.goog-te-banner-frame.skiptranslate,
+.goog-logo-link,
+.goog-te-gadget span {
+  display: none !important;
+}
+
+body {
+  top: 0px !important; /* kyunki banner normally body ko push karta hai */
+}
+#google_translate_element select {
+  background: #28a745;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#google_translate_element select option {
+  color: black; /* dropdown ke andar ke liye */
+}
+
