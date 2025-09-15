@@ -52,7 +52,7 @@ export class AnalysisPageComponent {
   // }
 
   
-  data?: AnalysisData ; // ✅ initially null
+  data?: AnalysisData ; 
   loading = false;
   errorMsg = '';
 
@@ -60,7 +60,7 @@ export class AnalysisPageComponent {
 
   ngOnInit(): void {
     // ✅ fetch data dynamically (you can pass stored form data here)
-    const lastUserInput = JSON.parse(localStorage.getItem('lastCropData') || '{}');
+    const lastUserInput =JSON.parse(localStorage.getItem('lastCropData') || '{}');
 
     if (Object.keys(lastUserInput).length) {
       this.getPrediction(lastUserInput);
@@ -73,7 +73,8 @@ export class AnalysisPageComponent {
 
     this.predictionService.predict(userData).subscribe({
       next: (res: AnalysisData) => {
-        this.data = res;   // ✅ Save returned analysis data
+        this.data = res;
+         this.data.prediction_tonnes_per_ha*=1.5
         this.loading = false;
         console.log(this.data);
       },

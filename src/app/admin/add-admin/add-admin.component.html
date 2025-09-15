@@ -28,16 +28,24 @@
     </thead>
     <tbody>
       <tr *ngFor="let admin of admins; let i = index">
-        <td>{{ i + 1 }}</td>
+        <td>{{ admin.phone }}</td>
         <td>
-          <input
+          <!-- <input
             type="tel"
             [(ngModel)]="editIndex === i ? editedPhone : admins[i]"
             [readonly]="editIndex !== i"
             [ngModelOptions]="{standalone: true}"
             pattern="[0-9]{10}"
             required
-          />
+          /> -->
+          <input
+  type="tel"
+  [(ngModel)]="editIndex === i ? editedPhone : admins[i].phone"
+  [readonly]="editIndex !== i"
+  [ngModelOptions]="{standalone: true}"
+  pattern="[0-9]{10}"
+  required
+/>
         </td>
         <td>
           <!-- Show Edit/Save based on state -->

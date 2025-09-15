@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CropsServiceService } from 'src/app/services/crops-service.service';
 import { PredictionService } from 'src/app/services/prediction.service';
 
@@ -9,7 +10,7 @@ import { PredictionService } from 'src/app/services/prediction.service';
   styleUrls: ['./crop-info-form.component.css']
 })
 export class CropInfoFormComponent {
-  constructor(private cropsService:CropsServiceService,private predictionService:PredictionService){}
+  constructor(private cropsService:CropsServiceService,private router:Router,private predictionService:PredictionService){}
 soilTypes=[]
 irrigationTypes=[]
 districts=["Angul",
@@ -74,18 +75,19 @@ submitData() {
 
   const userData = {
   district: this.cropFormGroup.get('district')!.value,
-  crop: this.cropFormGroup.get('crop')!.value,
-  season: this.cropFormGroup.get('season')!.value,
-  area: this.cropFormGroup.get('area')!.value,
-  fertilizer_use: this.cropFormGroup.get('fertilizerUse')!.value,
-  pesticide_use: this.cropFormGroup.get('pesticideUse')!.value,
-  temp: this.cropFormGroup.get('temp')!.value,
-  humidity: this.cropFormGroup.get('humidity')!.value,
-  n: this.cropFormGroup.get('n')!.value,
-  p: this.cropFormGroup.get('p')!.value,
-  k: this.cropFormGroup.get('k')!.value,
-  ph: this.cropFormGroup.get('pH')!.value
+  crop_name: this.cropFormGroup.get('crop')!.value,  // ✅ matches backend
+  season_of_cultivation: this.cropFormGroup.get('season')!.value,
+  sown_area: this.cropFormGroup.get('area')!.value, // ✅ matches backend
+  fertilizer_usekg_ha: this.cropFormGroup.get('fertilizerUse')!.value,
+  pesticide_usekg_ha: this.cropFormGroup.get('pesticideUse')!.value,
+  avg_temperature: this.cropFormGroup.get('temp')!.value,
+  avg_humidity: this.cropFormGroup.get('humidity')!.value,
+  soil_n: this.cropFormGroup.get('n')!.value,
+  soil_p: this.cropFormGroup.get('p')!.value,
+  soil_k: this.cropFormGroup.get('k')!.value,
+  soil_ph: this.cropFormGroup.get('pH')!.value
 };
+
 
 
   // call combined endpoint:
@@ -94,7 +96,9 @@ submitData() {
       alert('Crop saved & prediction generated successfully');
       console.log('Saved crop:', res.savedCrop);
       console.log('Prediction:', res.prediction);
+      localStorage.setItem('lastCropData',JSON.stringify(res.savedCrop))
       this.cropFormGroup.reset();
+      this.router.navigate(['Analysis']);
     },
     error: (err) => {
       alert('Error saving crop or generating prediction');

@@ -1,7 +1,7 @@
 /* Navbar */
 .navbar {
   position: fixed;
-  top: 0;
+  top: 0px;
   height: 73px;
 
   align-items: center;

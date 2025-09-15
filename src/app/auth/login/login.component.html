@@ -22,7 +22,7 @@
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" placeholder="Enter your password" formControlName="password" />
-      <p class="error" *ngIf="isEmailRequired('password')">Password is required</p>
+      <p class="error" *ngIf="isFieldRequired('password')">Password is required</p>
     </div>
 
         <a (click)="navigateToForgotPW()" class="forgot-link">Forgot password?</a>

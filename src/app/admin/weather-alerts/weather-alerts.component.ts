@@ -8,93 +8,113 @@ import { Component } from '@angular/core';
 export class WeatherAlertsComponent {
  API_KEY = "29af75e3d2c4ad17fc10824bada6d84c";
 
-     async getWeather():Promise<any> {
-      let city = document.getElementById("district") as HTMLSelectElement;
-      let cityValue,langValue;
-      if(city){cityValue=city.value};
-      const lang = document.getElementById("lang") as HTMLSelectElement;
-      if(lang)langValue=lang.value;
-      let forecast=document.getElementById("forecast")
-      if(forecast)forecast.innerHTML = "<p>Loading...</p>";
+  async getWeather() {
+    const citySelect = document.getElementById("district") as HTMLSelectElement;
+    const langSelect = document.getElementById("lang") as HTMLSelectElement;
+    const forecastEl = document.getElementById("forecast");
 
-      try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityValue}&appid=${this.API_KEY}&units=metric`);
-        const data = await res.json();
-        if (!data.list && forecast) return forecast.innerHTML = "<p>Error: "+data.message+"</p>";
+    const cityValue = citySelect ? citySelect.value : "";
+    const langValue = langSelect ? langSelect.value : "en"; // default to English
 
-        const dailyData:any = {};
-        data.list.forEach((item:any) => {
-          const date = item.dt_txt.split(" ")[0];
-          if (!dailyData[date]) dailyData[date] = { temps: [], humidities: [], pressures: [], winds: [], descriptions: [] };
-          dailyData[date].temps.push(item.main.temp);
-          dailyData[date].humidities.push(item.main.humidity);
-          dailyData[date].pressures.push(item.main.pressure);
-          dailyData[date].winds.push(item.wind.speed);
-          dailyData[date].descriptions.push(item.weather[0].description);
-        });
+    if (forecastEl) forecastEl.innerHTML = "<p>Loading...</p>";
 
-        let table = `<h3>5-Day Daily Forecast for ${cityValue}</h3>
-          <table class="forecast-table">
-            <tr>
-              <th style="margin:10px">Date</th>
-              <th style="margin:10px">Description</th>
-              <th style="margin:10px">Avg Temp (°C)</th>
-              <th style="margin:10px">Avg Humidity (%)</th>
-              <th style="margin:10px">Avg Pressure (hPa)</th>
-              <th style="margin:10px">Avg Wind (m/s)</th>
-              <th style="margin:10px">Alert</th>
-            </tr>`;
+    try {
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityValue}&appid=${this.API_KEY}&units=metric`);
+      const data = await res.json();
 
-        for (const date of Object.keys(dailyData).slice(0,5)) {
-          const d = dailyData[date];
-          const avg = (arr:any) => (arr.reduce((a:any,b:any)=>a+b,0)/arr.length).toFixed(1);
-          const desc =this. mostFrequent(d.descriptions);
+      if (!data.list) {
+        if (forecastEl) forecastEl.innerHTML = `<p>Error: ${data.message}</p>`;
+        return;
+      }
 
-          const summary = { description: desc, wind: avg(d.winds), temp: avg(d.temps), pressure: avg(d.pressures) };
-          const alertMsg = this.checkExtremeWeather(summary);
+      // Organize daily data
+      const dailyData: any = {};
+      data.list.forEach((item: any) => {
+        const date = item.dt_txt.split(" ")[0];
+        if (!dailyData[date]) dailyData[date] = { temps: [], humidities: [], pressures: [], winds: [], descriptions: [] };
+        dailyData[date].temps.push(item.main.temp);
+        dailyData[date].humidities.push(item.main.humidity);
+        dailyData[date].pressures.push(item.main.pressure);
+        dailyData[date].winds.push(item.wind.speed);
+        dailyData[date].descriptions.push(item.weather[0].description);
+      });
 
-          if (alertMsg) {
-            // Send alert to backend with selected language
-            fetch("http://localhost:3000/send-sms", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ alertMsg, cityValue, date, lang })
-            }).then(res=>res.json()).then(data=>console.log("SMS sent:", data)).catch(err=>console.error(err));
-          }
-
-          table += `<tr>
-            <td style="margin:10px">${date}</td>
-            <td style="margin:10px">${desc}</td>
-            <td style="margin:10px">${avg(d.temps)}</td>
-            <td style="margin:10px">${avg(d.humidities)}</td>
-            <td style="margin:10px">${avg(d.pressures)}</td>
-            <td style="margin:10px">${avg(d.winds)}</td>
-            <td style="margin:10px">${alertMsg ? alertMsg : "✅ Safe"}</td>
+      // Generate table
+      let table = `<h3>5-Day Daily Forecast for ${cityValue}</h3>
+        <table class="forecast-table">
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Avg Temp (°C)</th>
+            <th>Avg Humidity (%)</th>
+            <th>Avg Pressure (hPa)</th>
+            <th>Avg Wind (m/s)</th>
+            <th>Alert</th>
           </tr>`;
+
+      for (const date of Object.keys(dailyData).slice(0,5)) {
+        const d = dailyData[date];
+        const avg = (arr: any) => (arr.reduce((a: any,b: any) => a+b,0)/arr.length).toFixed(1);
+        const desc = this.mostFrequent(d.descriptions);
+
+        const summary = { description: desc, wind: avg(d.winds), temp: avg(d.temps), pressure: avg(d.pressures) };
+        const alertMsg = this.checkExtremeWeather(summary);
+
+        // Send alert if needed
+        if (alertMsg) {
+          console.log("Sending alert:", alertMsg, "Lang:", langValue); // debug
+          fetch("http://localhost:3000/api/send-sms", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+            body: JSON.stringify({
+              alertMsg,
+              city: cityValue,
+              date,
+              lang: langValue
+            })
+          })
+          .then(res => res.json())
+          .then(data => console.log("SMS sent:", data))
+          .catch(err => console.error("SMS send error:", err));
         }
 
-        table += "</table>";
-        if(forecast)forecast.innerHTML = table;
-
-      } catch (err) {
-        if(forecast)forecast.innerHTML = "Error fetching data: " + err;
+        table += `<tr>
+          <td>${date}</td>
+          <td>${desc}</td>
+          <td>${avg(d.temps)}</td>
+          <td>${avg(d.humidities)}</td>
+          <td>${avg(d.pressures)}</td>
+          <td>${avg(d.winds)}</td>
+          <td>${alertMsg ? alertMsg : "✅ Safe"}</td>
+        </tr>`;
       }
-    }
 
-     mostFrequent(arr:any):any {
-      return arr.sort((a:any,b:any)=>arr.filter((v:any)=>v===a).length - arr.filter((v:any)=>v===b).length).pop();
-    }
+      table += "</table>";
+      if (forecastEl) forecastEl.innerHTML = table;
 
-     checkExtremeWeather(d:any) {
-      const desc = d.description.toLowerCase();
-      if (desc.includes("heavy rain") || desc.includes("thunderstorm") || desc.includes("moderate rain")) return "⚠️ Rain Alert";
-      if (d.wind > 7) return "🌪️ High Wind Alert";
-      if (d.temp > 35) return "🔥 Heatwave Alert";
-      if (d.pressure < 1002) return "🌧️ Low Pressure Alert";
-      return null;
+    } catch (err) {
+      if (forecastEl) forecastEl.innerHTML = "Error fetching data: " + err;
+      console.error(err);
     }
+  }
 
-    // Default load
-    ngOnInit(){this.getWeather();}
-    
+  mostFrequent(arr: any): any {
+    return arr.sort((a:any,b:any)=>arr.filter((v:any)=>v===a).length - arr.filter((v:any)=>v===b).length).pop();
+  }
+
+  checkExtremeWeather(d: any) {
+    const desc = d.description.toLowerCase();
+    if (desc.includes("heavy rain") || desc.includes("thunderstorm") || desc.includes("moderate rain")) return "⚠️ Rain Alert";
+    if (d.wind > 7) return "🌪️ High Wind Alert";
+    if (d.temp > 35) return "🔥 Heatwave Alert";
+    if (d.pressure < 1002) return "🌧️ Low Pressure Alert";
+    return null;
+  }
+
+  ngOnInit() {
+    this.getWeather();
+  }
 }

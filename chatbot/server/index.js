@@ -15,7 +15,7 @@ const openrouter = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-
+console.log(`${process.env.OPENROUTER_API_KEY}`);
 function detectLanguage(text) {
   if (!text || typeof text !== "string") return "english";
 
