@@ -42,7 +42,7 @@ isLoggedIn=false;
 
         // Example: save user info in localStorage
         localStorage.setItem('user', JSON.stringify(res.farmer.fullName));
-
+        localStorage.setItem('token',JSON.stringify(res.token));
         this.inValidCredentials = false;
         localStorage.setItem('isLoggedIn',JSON.stringify(this.isLoggedIn));
         this.router.navigate(['/Krushijantra-Home']); 

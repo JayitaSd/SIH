@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CropsServiceService } from 'src/app/services/crops-service.service';
+import { PredictionService } from 'src/app/services/prediction.service';
 
 @Component({
   selector: 'app-crop-info-form',
@@ -8,7 +9,7 @@ import { CropsServiceService } from 'src/app/services/crops-service.service';
   styleUrls: ['./crop-info-form.component.css']
 })
 export class CropInfoFormComponent {
-  constructor(private cropsService:CropsServiceService){}
+  constructor(private cropsService:CropsServiceService,private predictionService:PredictionService){}
 soilTypes=[]
 irrigationTypes=[]
 districts=["Angul",
@@ -52,9 +53,9 @@ cropFormGroup=new FormGroup({
  pesticideUse:new FormControl('',[Validators.required]),
  temp:new FormControl('',[Validators.required]),
  humidity:new FormControl('',[Validators.required]),
- n:new FormControl('',[Validators.required]),
- p:new FormControl('',[Validators.required]),
- k:new FormControl('',[Validators.required]),
+ n:new FormControl(''),
+ p:new FormControl(''),
+ k:new FormControl(''),
  pH:new FormControl('',[Validators.required])
 
   
@@ -65,38 +66,42 @@ getFormControl(name:string){
 isFormControlError(name:string){
   return this.getFormControl(name)?.errors?.['required'] && this.getFormControl(name)?.dirty
 }
-
- submitData(){
-     
-    if (this.cropFormGroup.invalid ) {
-      alert('Please fill all fields correctly');
-      return;
-    }
-
-    const userData = {
-      district: this.cropFormGroup.get('district')!.value,
-      crop: this.cropFormGroup.get('crop')!.value,
-      season: this.cropFormGroup.get('season')!.value,
-      area: this.cropFormGroup.get('area')!.value,
-      fertilizerUse: this.cropFormGroup.get('fertilizerUse')!.value,
-      pesticideUse: this.cropFormGroup.get('pesticideUse')!.value,
-      temp: this.cropFormGroup.get('temp')!.value,
-      humidity: this.cropFormGroup.get('humidity')!.value,
-      n: this.cropFormGroup.get('n')!.value,
-      p: this.cropFormGroup.get('p')!.value,
-      k: this.cropFormGroup.get('k')!.value,
-      pH: this.cropFormGroup.get('pH')!.value
-    };
-
-    this.cropsService.addCrop(userData).subscribe({
-      next: (res) => {
-        alert('Crop data saved successfully');
-        this.cropFormGroup.reset();
-      },
-      error: (err) => {
-        alert('Error saving crop data');
-        console.error(err);
-      }
-    });
+submitData() {
+  if (this.cropFormGroup.invalid) {
+    alert('Please fill all fields correctly');
+    return;
   }
+
+  const userData = {
+  district: this.cropFormGroup.get('district')!.value,
+  crop: this.cropFormGroup.get('crop')!.value,
+  season: this.cropFormGroup.get('season')!.value,
+  area: this.cropFormGroup.get('area')!.value,
+  fertilizer_use: this.cropFormGroup.get('fertilizerUse')!.value,
+  pesticide_use: this.cropFormGroup.get('pesticideUse')!.value,
+  temp: this.cropFormGroup.get('temp')!.value,
+  humidity: this.cropFormGroup.get('humidity')!.value,
+  n: this.cropFormGroup.get('n')!.value,
+  p: this.cropFormGroup.get('p')!.value,
+  k: this.cropFormGroup.get('k')!.value,
+  ph: this.cropFormGroup.get('pH')!.value
+};
+
+
+  // call combined endpoint:
+  this.predictionService.submitCropWithPrediction(userData).subscribe({
+    next: (res: any) => {
+      alert('Crop saved & prediction generated successfully');
+      console.log('Saved crop:', res.savedCrop);
+      console.log('Prediction:', res.prediction);
+      this.cropFormGroup.reset();
+    },
+    error: (err) => {
+      alert('Error saving crop or generating prediction');
+      console.error(err);
+    }
+  });
+}
+
+ 
 }  
