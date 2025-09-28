@@ -33,7 +33,7 @@ export class PredictionService {
   }
   // prediction.service.ts
 submitCropWithPrediction(cropData: any) {
-  return this.http.post('http://localhost:3000/api/crops/submit', cropData);
+  return this.http.post('http://localhost:5000/api/crops/submit', cropData);
 }
 
 }

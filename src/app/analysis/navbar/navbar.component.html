@@ -20,6 +20,9 @@
         <li class="nav-item" *ngIf="isFarmerLoggedIn">
           <a class="nav-link translatable" data-key="navProfile" (click)="navigateToPage('Profile')">Profile</a>
         </li>
+        <li class="nav-item" *ngIf="isFarmerLoggedIn">
+          <a class="nav-link translatable" data-key="navSchemes" (click)="navigateToPage('Schemes')">Schemes</a>
+        </li>
         <li class="nav-item" *ngIf="!isFarmerLoggedIn">
           <a class="nav-link translatable" data-key="navAddAdmin" (click)="navigateToPage('add-admin')">Admins</a>
         </li>

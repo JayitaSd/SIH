@@ -6,7 +6,7 @@
 //   providedIn: 'root'
 // })
 // export class RegisterService {
-//   private apiUrl = 'http://localhost:3000/api';
+//   private apiUrl = 'http://localhost:5000/api';
 
 //   constructor(private http: HttpClient) {}
 
@@ -43,7 +43,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) {}
 

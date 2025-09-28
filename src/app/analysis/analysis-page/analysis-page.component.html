@@ -6,8 +6,8 @@
         <label>Percent increase in yield possible</label>
         <div class="stat">
             <span class="big">
-                <!-- {{ (data.percent_increase_in_yield || 0) }} % -->
-                11.5%
+                {{ (data.percent_increase_in_yield )|| 0 }} %
+                <!-- 11.5% -->
             </span>
             <small>over current yield</small>
         </div>
@@ -16,8 +16,8 @@
         <label>Optimal yield</label>
         <div class="stat">
             <span class="big">
-                <!-- {{ (data.optimal_yield_possible || 0) }}  -->
-                2.05059 t/ha
+                {{ (data.optimal_yield_possible) || 0 }} 
+                <!-- 2.05059 t/ha -->
             </span>
 
         </div>
@@ -26,8 +26,8 @@
         <label>Expected yield</label>
         <div class="stat">
             <span class="big">
-                <!-- {{ (data.prediction_tonnes_per_ha || 0) }} -->
-                1.83915 t/ha
+                {{ ((data.prediction_tonnes_per_ha) || 0) }}
+                <!-- 1.83915 t/ha -->
             </span>
 
         </div>
@@ -37,8 +37,9 @@
         <label>Fertilizer needed</label>
         <div class="stat">
              <span class="big">
-                <!-- {{ data.fertilizer_value_recommended_kg_ha }}   -->
-            241.3 kg/ha</span>
+                {{ data.fertilizer_value_recommended_kg_ha }}  kg/ha 
+            <!-- 241.3 -->
+        </span>
             <small>total recommended</small>
         </div>
     </div>
@@ -47,8 +48,10 @@
         <label>Pesticide</label>
         <div class="stat">
              <span class="big">
-                <!-- {{ data.pesticide_value_recommended_kg_ha }}  -->
-            2.1 kg/ha</span>
+                {{ data.pesticide_value_recommended_kg_ha }} 
+            <!-- 2.1  -->
+            kg/ha
+        </span>
             <small>recommended</small>
         </div>
     </div>
@@ -59,8 +62,8 @@
         <p class="sentence">
             We recommend adjusting the soil pH to
             <strong>
-                <!-- {{ data.pH_recommended }} -->
-                6.3
+                {{ data.pH_recommended }}
+                <!-- 6.3 -->
             </strong> for better nutrient
             availability.
         </p>
@@ -68,55 +71,59 @@
         <p class="sentence">
             Add approximately
             <strong>
-                <!-- {{ data.p_kg_ha_to_be_added }} -->
-                19.67 kg/ha of phosphorus (P)</strong> and
+                {{ data.p_kg_ha_to_be_added }}
+                <!-- 19.67  -->
+                kg/ha of phosphorus (P)</strong> and
             <strong>
-                <!-- {{ data.k_kg_ha_to_be_added }} -->
-                26.84 kg/ha of potassium (K)</strong> to
+                {{ data.k_kg_ha_to_be_added }}
+                <!-- 26.84  -->
+                kg/ha of potassium (K)</strong> to
             meet crop needs.
         </p>
 
-        <!-- <p class="sentence" *ngIf="data.n_kg_ha_to_be_added > 0">
+        <p class="sentence" *ngIf="data.n_kg_ha_to_be_added > 0">
             Add about <strong>
                 {{ data.n_kg_ha_to_be_added }} 
                 kg/ha of nitrogen (N)</strong> as well.
-        </p> -->
+        </p>
         <p class="sentence">
-        <!-- *ngIf="data.n_kg_ha_to_be_added === 0"> -->
+        *ngIf="data.n_kg_ha_to_be_added === 0">
         No additional nitrogen (N) is recommended at this time.
         </p>
 
         <p class="sentence">
             Apply roughly <strong>
-                <!-- {{ data.fertilizer_value_recommended_kg_ha }}  -->
-                241.3 kg/ha</strong>
+                {{ data.fertilizer_value_recommended_kg_ha }} 
+                <!-- 241.3  -->
+                kg/ha</strong>
             of the recommended fertilizer blend to achieve the optimal yield.
         </p>
 
         <p class="sentence">
             Use about <strong>
-                <!-- {{ data.pesticide_value_recommended_kg_ha }}  -->
-                2.1 kg/ha</strong>
+                {{ data.pesticide_value_recommended_kg_ha }} 
+                <!-- 2.1  -->
+                kg/ha</strong>
             of pesticide as a preventative measure — follow label directions for safety and timing.
         </p>
 
         <p class="sentence">
             Recommended irrigation method: <strong>
-                <!-- {{ data.recommend_irrigation }} -->
-                Sprinkler, moderate (every 3-6 days)
+                {{ data.recommend_irrigation }}
+                <!-- Sprinkler, moderate (every 3-6 days) -->
             </strong>.
         </p>
 
         <p class="sentence">
-            <!-- Based on revenue optimization, the best crop choice would be
+            Based on revenue optimization, the best crop choice would be
       <strong>{{ data.best_crop_by_revenue }}</strong>.
       <span *ngIf="data.revenue_increase_from_best_crop_by_revenue > 0">
         Switching could increase revenue by
         <strong>₹{{ data.revenue_increase_from_best_crop_by_revenue }}</strong>.
-      </span> -->
-            <!-- <span *ngIf="data.revenue_increase_from_best_crop_by_revenue === 0">
+      </span> 
+             <span *ngIf="data.revenue_increase_from_best_crop_by_revenue === 0">
         No additional revenue is expected compared to your current crop.
-      </span> -->
+      </span>
         </p>
     </div>
 
@@ -135,3 +142,4 @@
         <button class="btn ghost" (click)="downloadCSV()">Download CSV</button>
     </div>
 </div>
+<!-- <h2 *ngIf="!data" class="text-danger" style="position: relative;top: 80px;">Data not found</h2> -->
